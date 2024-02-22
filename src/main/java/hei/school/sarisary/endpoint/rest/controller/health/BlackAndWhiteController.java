@@ -43,7 +43,7 @@ public class BlackAndWhiteController {
 
         GeneratePresignedUrlRequest generatePresignedUrlRequest =
                 new GeneratePresignedUrlRequest("preprod-bucket-poja-sarisary-std22026-bucket-bo4ryg8drttm", id)
-                        .withMethod(HttpMethod.GET)
+                        .withMethod(com.amazonaws.HttpMethod.GET)
                         .withExpiration(expiration);
         URL originalUrl = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
 
