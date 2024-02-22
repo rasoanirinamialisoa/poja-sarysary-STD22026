@@ -1,6 +1,8 @@
 package hei.school.sarisary.endpoint.rest.controller.health;
 
 import com.amazonaws.HttpMethod;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +12,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
-
 
 @RestController
 public class BlackAndWhiteController {
@@ -45,13 +43,13 @@ public class BlackAndWhiteController {
 
         GeneratePresignedUrlRequest generatePresignedUrlRequest =
                 new GeneratePresignedUrlRequest("bucketName", id)
-                        .withMethod(com.amazonaws.HttpMethod.GET)
+                        .withMethod(HttpMethod.GET) // Utilisation de HttpMethod de org.springframework.http
                         .withExpiration(expiration);
         URL originalUrl = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
 
         GeneratePresignedUrlRequest generateTransformedUrlRequest =
                 new GeneratePresignedUrlRequest("bucketName", id)
-                        .withMethod(HttpMethod.GET)
+                        .withMethod(com.amazonaws.HttpMethod.GET) // Utilisation de HttpMethod de com.amazonaws
                         .withExpiration(expiration);
         URL transformedUrl = s3Client.generatePresignedUrl(generateTransformedUrlRequest);
 
