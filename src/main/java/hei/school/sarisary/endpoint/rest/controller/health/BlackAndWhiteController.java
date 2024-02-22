@@ -42,16 +42,17 @@ public class BlackAndWhiteController {
         expiration.setTime(expTimeMillis);
 
         GeneratePresignedUrlRequest generatePresignedUrlRequest =
-                new GeneratePresignedUrlRequest("bucketName", id)
-                        .withMethod(HttpMethod.GET) // Utilisation de HttpMethod de org.springframework.http
+                new GeneratePresignedUrlRequest("preprod-bucket-poja-sarisary-std22026-bucket-bo4ryg8drttm", id)
+                        .withMethod(com.amazonaws.HttpMethod.GET)
                         .withExpiration(expiration);
         URL originalUrl = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
 
         GeneratePresignedUrlRequest generateTransformedUrlRequest =
-                new GeneratePresignedUrlRequest("bucketName", id)
-                        .withMethod(com.amazonaws.HttpMethod.GET) // Utilisation de HttpMethod de com.amazonaws
+                new GeneratePresignedUrlRequest("preprod-bucket-poja-sarisary-std22026-bucket-bo4ryg8drttm", id)
+                        .withMethod(com.amazonaws.HttpMethod.GET)
                         .withExpiration(expiration);
         URL transformedUrl = s3Client.generatePresignedUrl(generateTransformedUrlRequest);
+
 
         Map<String, String> urls = new HashMap<>();
         urls.put("original_url", originalUrl.toString());
