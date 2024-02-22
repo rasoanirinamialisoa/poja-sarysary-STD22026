@@ -42,13 +42,13 @@ public class BlackAndWhiteController {
         expiration.setTime(expTimeMillis);
 
         GeneratePresignedUrlRequest generatePresignedUrlRequest =
-                new GeneratePresignedUrlRequest("preprod-bucket-poja-sarisary-std22026-bucket-bo4ryg8drttm", id)
+                new GeneratePresignedUrlRequest("prod-bucket-poja-sarisary-std22026-bucket-bo4ryg8drttm", id)
                         .withMethod(com.amazonaws.HttpMethod.GET)
                         .withExpiration(expiration);
         URL originalUrl = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
 
         GeneratePresignedUrlRequest generateTransformedUrlRequest =
-                new GeneratePresignedUrlRequest("preprod-bucket-poja-sarisary-std22026-bucket-bo4ryg8drttm", id)
+                new GeneratePresignedUrlRequest("prod-bucket-poja-sarisary-std22026-bucket-bo4ryg8drttm", id)
                         .withMethod(com.amazonaws.HttpMethod.GET)
                         .withExpiration(expiration);
         URL transformedUrl = s3Client.generatePresignedUrl(generateTransformedUrlRequest);
