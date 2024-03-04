@@ -38,7 +38,7 @@ public class BlackAndWhiteController {
 
         java.util.Date expiration = new java.util.Date();
         long expTimeMillis = expiration.getTime();
-        expTimeMillis += 1000 * 60 * 60; // 1 heure
+        expTimeMillis += 1000 * 60 * 60;
         expiration.setTime(expTimeMillis);
 
         GeneratePresignedUrlRequest generatePresignedUrlRequest =
